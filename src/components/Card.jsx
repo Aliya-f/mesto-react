@@ -8,8 +8,8 @@ export default function Card({onCardClick, link, name, likes, owner, _id, onCard
   const cardLikeButtonClassName = ( 
     `places__like-button ${isLiked && 'like-button_type_active'}` 
   );
-  const cardDeleteButtonClassName = `element__button-trash ${
-    isOwn ? "element__button-trash_type_active" : ""
+  const cardDeleteButtonClassName = `places__delete ${
+    isOwn ? "places__delete_show" : ""
   }`;
 
   function handleClick() {
@@ -37,7 +37,8 @@ export default function Card({onCardClick, link, name, likes, owner, _id, onCard
           <button 
           className={cardLikeButtonClassName} 
           aria-label='нравится' 
-          type='button' onClick={handleLikeClick} />
+          type='button'
+					onClick={handleLikeClick} />
           <p className='places__like-quantity'>0</p>
         </div>
         {isOwn && <button 

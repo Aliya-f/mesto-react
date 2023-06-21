@@ -10,6 +10,7 @@ function PopupWithForm(props) {
         className={`popup__form form-${props.name}`}
         name={`${props.name}`}
         noValidate=""
+				onSubmit={props.onSubmit}
         >
         {props.children}
         <button type="submit" className="popup__form-button">
@@ -26,7 +27,5 @@ function PopupWithForm(props) {
     </div>
   </>
 )}
-//а вот как будет у попапа с картинкой:
-//<div className={`popup popup_type_image ${card ? 'popup_is-opened' : ''}`}></div>
 
 export default PopupWithForm;

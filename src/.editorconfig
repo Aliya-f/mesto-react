@@ -1,0 +1,8 @@
+# Корневой файл EditorConfig
+root = true
+
+# Для всех файлов
+[*]
+charset = utf-8
+indent_style = tab
+indent_size = 2

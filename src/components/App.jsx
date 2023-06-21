@@ -7,6 +7,7 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import {api} from "../utils/Api.js";
+import EditProfilePopup from './EditProfilePopup';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -59,6 +60,15 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
+	function handleUpdateUser(data) {
+		api.setUserInfo(data)
+		.then((res) => {
+			setCurrentUser(res);
+      closeAllPopups()
+		})
+		.catch((err) => console.log(err));
+	}
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -93,35 +103,10 @@ function App() {
           id="avatar-error" />
         </PopupWithForm> 
         {/* POPUP: Редактировать профиль */}
-        <PopupWithForm classText="title" title="Редактировать профиль" 
-        name="profile" 
-        buttonText="Сохранить"
-        isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}
-        > 
-          <input
-          type="text"
-          placeholder="Имя"
-          className="popup__form-input"
-          name="name"
-          id="name"
-          required=""
-          minLength={2}
-          maxLength={40}
-          />
-          <span className="popup__error-visible" id="name-error" />
-          <input
-          type="text"
-          placeholder="О себе"
-          className="popup__form-input"
-          name="about"
-          id="about"
-          required=""
-          minLength={2}
-          maxLength={200}
-          />
-          <span className="popup__error-visible" id="about-error" />
-        </PopupWithForm> 
+        <EditProfilePopup isOpen={isEditProfilePopupOpen}
+				onClose={closeAllPopups}
+				onUpdateUser={handleUpdateUser}
+				/> 
         {/* POPUP: добавить фото */}
         <PopupWithForm classText="title" title="Новое место" 
         name="cards" 
