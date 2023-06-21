@@ -1,10 +1,28 @@
 import React from 'react';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-export default function Card({onCardClick, link, name}) {
+export default function Card({onCardClick, link, name, likes, owner, _id, onCardDelete, onCardLike}) {
+  const currentUser = React.useContext(CurrentUserContext);
+  const isOwn = owner._id === currentUser._id;
+  const isLiked = likes.some(i => i._id === currentUser._id);
+  const cardLikeButtonClassName = ( 
+    `places__like-button ${isLiked && 'like-button_type_active'}` 
+  );
+  const cardDeleteButtonClassName = `element__button-trash ${
+    isOwn ? "element__button-trash_type_active" : ""
+  }`;
 
   function handleClick() {
     onCardClick({link, name});
-  }  
+  }
+
+  function handleDeleteClick() {
+    onCardDelete(_id);
+  }
+
+  function handleLikeClick() { 
+    onCardLike(likes, _id);
+  }
 
   return (
     <li className="places__item"> 
@@ -17,17 +35,15 @@ export default function Card({onCardClick, link, name}) {
         <h2 className='places__title'>{name}</h2>
         <div>
           <button 
-          className='places__like-button' 
+          className={cardLikeButtonClassName} 
           aria-label='нравится' 
-          type='button'>
-          </button>
+          type='button' onClick={handleLikeClick} />
           <p className='places__like-quantity'>0</p>
         </div>
-        <button 
-        className='places__delete' 
+        {isOwn && <button 
+        className={cardDeleteButtonClassName}
         aria-label='удалить' 
-        type='button'>
-        </button>
+        type='button'onClick={handleDeleteClick} />}
       </div>
     </li> 
   );

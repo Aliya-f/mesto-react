@@ -79,6 +79,13 @@ class Api {
     })
     .then(this._checkResponse)
   }
+
+  changeLikeCardStatus(id, hasLike) {
+    if (!hasLike) {
+      return api.likeCard(id);
+    }
+    return api.dislikeCard(id);
+  }
  
   // аватар
   setAvatar(data) {
