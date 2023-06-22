@@ -1,5 +1,4 @@
 import React from 'react';
-//import '../index.css';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -7,7 +6,9 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import {api} from "../utils/Api.js";
+import EditAvatarPopup from './EditAvatarPopup';
 import EditProfilePopup from './EditProfilePopup';
+import AddPlacePopup from './AddPlacePopup';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -41,7 +42,7 @@ function App() {
     .then(() => setCards((state) => state.filter((item) => item._id !== id)))
     .catch((err) => console.log(err))
   }
-  function handleCardLike(likes, _id) {
+  function handleCardLike({likes, _id}) {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = likes.some(i => i._id === currentUser._id);
     // Отправляем запрос в API и получаем обновлённые данные карточки
@@ -49,7 +50,16 @@ function App() {
       setCards((state) => state.map((c) => c._id === _id ? newCard : c));
     })
     .catch((err) => console.log(err));
-  } 
+  }
+
+	React.useEffect(() => {
+    api
+      .getInitialCards()
+      .then((res) => {
+        setCards([...res]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   React.useEffect(() => {
     api
@@ -69,6 +79,26 @@ function App() {
 		.catch((err) => console.log(err));
 	}
 
+	function handleUpdateAvatar(data) {
+    api
+    .setAvatar(data)
+    .then((res) => {
+      setCurrentUser(res);
+      closeAllPopups();
+    })
+    .catch((err) => console.log(err))
+  }
+
+	function handleAddPlaceSubmit(data) {
+    api
+    .createCard(data)
+    .then((newCard) => {
+      setCards([newCard, ...cards]);
+      closeAllPopups();
+    })
+    .catch((err) => console.log(err))
+	}
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -84,58 +114,19 @@ function App() {
         />
         <Footer />
         {/* POPUP: Сменить аватар */}
-        <PopupWithForm classText="title" title="Обновить аватар" 
-        name="avatar" 
-        buttonText="Сохранить"
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}      
-        > 
-          <input 
-          type="url" 
-          placeholder="Ссылка на фото"
-          className="popup__form-input" 
-          name="avatar" 
-          id="avatar" 
-          required="" 
-          minLength={2} maxLength={200}
-          />
-          <span className="popup__error-visible"
-          id="avatar-error" />
-        </PopupWithForm> 
+				<EditAvatarPopup isOpen={isEditAvatarPopupOpen}
+				onClose={closeAllPopups}
+				onUpdateAvatar={handleUpdateAvatar} /> 
         {/* POPUP: Редактировать профиль */}
         <EditProfilePopup isOpen={isEditProfilePopupOpen}
 				onClose={closeAllPopups}
 				onUpdateUser={handleUpdateUser}
 				/> 
         {/* POPUP: добавить фото */}
-        <PopupWithForm classText="title" title="Новое место" 
-        name="cards" 
-        buttonText="Создать"
-        isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}
-        >  
-          <input
-          type="text"
-          placeholder="Название"
-          className="popup__form-input"
-          name="name"
-          id="place"
-          required=""
-          minLength={2}
-          maxLength={40}
-          />
-          <span className="popup__error-visible" id="place-error" />
-          <input
-          type="url"
-          placeholder="Ссылка на картинку"
-          className="popup__form-input"
-          name="link"
-          id="link"
-          required=""
-          minLength={2}
-          />
-          <span className="popup__error-visible" id="link-error" />
-        </PopupWithForm>
+				<AddPlacePopup isOpen={isAddPlacePopupOpen}
+				onClose={closeAllPopups}
+				onAddPlace={handleAddPlaceSubmit}
+				/>        
         {/* POPUP: Удалить карточку */}
         <PopupWithForm classText="title" title="Вы уверены?" 
         name="delete-card" 

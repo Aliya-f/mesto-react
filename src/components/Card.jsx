@@ -3,25 +3,26 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function Card({onCardClick, link, name, likes, owner, _id, onCardDelete, onCardLike}) {
   const currentUser = React.useContext(CurrentUserContext);
+	// Определяем, являемся ли мы владельцем текущей карточки
   const isOwn = owner._id === currentUser._id;
+	// Определяем, есть ли у карточки лайк, поставленный текущим пользователем
   const isLiked = likes.some(i => i._id === currentUser._id);
+	// Создаём переменные, которые зададим в `className` для кнопки лайка и удаления
   const cardLikeButtonClassName = ( 
     `places__like-button ${isLiked && 'like-button_type_active'}` 
   );
-  const cardDeleteButtonClassName = `places__delete ${
-    isOwn ? "places__delete_show" : ""
-  }`;
+  const cardDeleteButtonClassName = (`places__delete ${
+    isOwn ? "places__delete_show" : ""}`
+	)
 
   function handleClick() {
     onCardClick({link, name});
   }
-
   function handleDeleteClick() {
     onCardDelete(_id);
   }
-
   function handleLikeClick() { 
-    onCardLike(likes, _id);
+    onCardLike({likes, _id});
   }
 
   return (
@@ -36,7 +37,7 @@ export default function Card({onCardClick, link, name, likes, owner, _id, onCard
         <div>
           <button 
           className={cardLikeButtonClassName} 
-          aria-label='нравится' 
+          aria-label='нравится'
           type='button'
 					onClick={handleLikeClick} />
           <p className='places__like-quantity'>0</p>
@@ -44,7 +45,8 @@ export default function Card({onCardClick, link, name, likes, owner, _id, onCard
         {isOwn && <button 
         className={cardDeleteButtonClassName}
         aria-label='удалить' 
-        type='button'onClick={handleDeleteClick} />}
+        type='button'
+				onClick={handleDeleteClick} />}
       </div>
     </li> 
   );
