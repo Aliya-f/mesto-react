@@ -11,8 +11,8 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
 
 	// После загрузки текущего пользователя из API его данные будут использованы в управляемых компонентах.
 	React.useEffect(() => {
-  setName(currentUser.name);
-  setDescription(currentUser.about);
+  	setName(currentUser.name);
+  	setDescription(currentUser.about);
 	}, [isOpen, currentUser]); 
 
   // Обработчик изменения инпута обновляет стейт
