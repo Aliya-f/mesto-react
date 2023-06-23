@@ -51,7 +51,7 @@ function App() {
     })
     .catch((err) => console.log(err));
   }
-
+	
 	React.useEffect(() => {
     api
       .getInitialCards()
@@ -80,7 +80,7 @@ function App() {
 	}
 
 	function handleUpdateAvatar(data) {
-    api
+		api
     .setAvatar(data)
     .then((res) => {
       setCurrentUser(res);
@@ -90,7 +90,7 @@ function App() {
   }
 
 	function handleAddPlaceSubmit(data) {
-    api
+		api
     .createCard(data)
     .then((newCard) => {
       setCards([newCard, ...cards]);
@@ -114,21 +114,26 @@ function App() {
         />
         <Footer />
         {/* POPUP: Сменить аватар */}
-				<EditAvatarPopup isOpen={isEditAvatarPopupOpen}
+				<EditAvatarPopup
+				isOpen={isEditAvatarPopupOpen}
 				onClose={closeAllPopups}
 				onUpdateAvatar={handleUpdateAvatar} /> 
         {/* POPUP: Редактировать профиль */}
-        <EditProfilePopup isOpen={isEditProfilePopupOpen}
+				<EditProfilePopup
+				isOpen={isEditProfilePopupOpen}
 				onClose={closeAllPopups}
 				onUpdateUser={handleUpdateUser}
 				/> 
         {/* POPUP: добавить фото */}
-				<AddPlacePopup isOpen={isAddPlacePopupOpen}
+				<AddPlacePopup
+				isOpen={isAddPlacePopupOpen}
 				onClose={closeAllPopups}
 				onAddPlace={handleAddPlaceSubmit}
 				/>        
         {/* POPUP: Удалить карточку */}
-        <PopupWithForm classText="title" title="Вы уверены?" 
+        <PopupWithForm
+				classText="title"
+				title="Вы уверены?" 
         name="delete-card" 
         buttonText="Да"
         isOpen={false}

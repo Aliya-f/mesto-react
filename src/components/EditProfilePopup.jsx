@@ -13,7 +13,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
 	React.useEffect(() => {
   setName(currentUser.name);
   setDescription(currentUser.about);
-	}, [currentUser]); 
+	}, [isOpen, currentUser]); 
 
   // Обработчик изменения инпута обновляет стейт
   function handleChangeName(evt) {
@@ -47,7 +47,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       className="popup__form-input"
       name="name"
       id="name"
-      required=""
+      required
       minLength={2}
       maxLength={40}
       onChange={handleChangeName}
@@ -60,7 +60,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       className="popup__form-input"
       name="about"
       id="about"
-      required=""
+      required
       minLength={2}
       maxLength={200}
       onChange={handleChangeDescription}

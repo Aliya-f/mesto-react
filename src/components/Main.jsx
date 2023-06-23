@@ -6,7 +6,6 @@ function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardLike,
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
-    <>
     <main className="content">
       <section className="profile">
         <div className="profile__card">
@@ -55,7 +54,6 @@ function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardLike,
         </ul>
       </section>
     </main>
-    </>
   )
 }
 
