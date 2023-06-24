@@ -25,14 +25,14 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
 		onClose={onClose}
 		onSubmit={handleSubmit}>
 			<input
-      type="url" 
-      placeholder="Ссылка на фото"
-      className="popup__form-input" 
-      name="avatar" 
-      id="avatar" 
-      required
-      minLength={2} maxLength={200}
-			ref={avatarRef}
+	      type="url" 
+  	    placeholder="Ссылка на фото"
+    	  className="popup__form-input" 
+      	name="avatar" 
+	      id="avatar" 
+  	    required
+    	  minLength={2} maxLength={200}
+				ref={avatarRef}
       />
       <span className="popup__error-visible"
       id="avatar-error" />

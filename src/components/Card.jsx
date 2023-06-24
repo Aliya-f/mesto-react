@@ -1,7 +1,7 @@
 import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-export default function Card({onCardClick, link, name, likes, owner, _id, onCardDelete, onCardLike}) {
+export default function Card({ onCardClick, link, name, likes, owner, _id, onCardDelete, onCardLike }) {
   const currentUser = React.useContext(CurrentUserContext);
 	// Определяем, являемся ли мы владельцем текущей карточки
   const isOwn = owner._id === currentUser._id;
@@ -27,26 +27,29 @@ export default function Card({onCardClick, link, name, likes, owner, _id, onCard
 
   return (
     <li className="places__item"> 
-      <img className='places__img' 
-      src={link} 
-      alt={name} 
-      onClick={handleClick}
+      <img
+				className='places__img' 
+	      src={link} 
+  	    alt={name} 
+    	  onClick={handleClick}
       />
       <div className='places__content'>
         <h2 className='places__title'>{name}</h2>
         <div>
           <button 
-          className={cardLikeButtonClassName} 
-          aria-label='нравится'
-          type='button'
-					onClick={handleLikeClick} />
+	          className={cardLikeButtonClassName} 
+  	        aria-label='нравится'
+    	      type='button'
+						onClick={handleLikeClick}
+					/>
           <p className='places__like-quantity'>0</p>
         </div>
         {isOwn && <button 
-        className={cardDeleteButtonClassName}
-        aria-label='удалить' 
-        type='button'
-				onClick={handleDeleteClick} />}
+	        className={cardDeleteButtonClassName}
+  	      aria-label='удалить' 
+    	    type='button'
+					onClick={handleDeleteClick}
+				/>}
       </div>
     </li> 
   );

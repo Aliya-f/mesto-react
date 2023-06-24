@@ -1,15 +1,14 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
-export default function AddPlacePopup({
-	isOpen, onClose, onAddPlace}) {
-		const [name, setName] = React.useState('');
-		const [link, setLink] = React.useState('');
+export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+	const [name, setName] = React.useState('');
+	const [link, setLink] = React.useState('');
 
-		React.useEffect(() => {
-			setName('');
-			setLink('');
-		}, [isOpen]);
+	React.useEffect(() => {
+		setName('');
+		setLink('');
+	}, [isOpen]);
 
   // Обработчик изменения инпута обновляет стейт
   function handleChangeName(evt) {
@@ -28,40 +27,40 @@ export default function AddPlacePopup({
 			link: link,
 		});
 	}
-	
+
 	return (
 		<PopupWithForm
-		classText="title"
-		title="Новое место" 
-    name="cards" 
-    buttonText="Создать"
-    isOpen={isOpen}
-    onClose={onClose}
-		onSubmit={handleSubmit}
-    >  
+			classText="title"
+			title="Новое место" 
+    	name="cards" 
+	    buttonText="Создать"
+  	  isOpen={isOpen}
+    	onClose={onClose}
+			onSubmit={handleSubmit}
+    >
       <input
-			type="text"
-      placeholder="Название"
-      className="popup__form-input"
-      name="name"
-      id="place"
-      required
-      minLength={2}
-      maxLength={40}
-			onChange={handleChangeName}
-			value={name}
+				type="text"
+  	    placeholder="Название"
+    	  className="popup__form-input"
+      	name="name"
+	      id="place"
+  	    required
+    	  minLength={2}
+      	maxLength={40}
+				onChange={handleChangeName}
+				value={name}
       />
       <span className="popup__error-visible" id="place-error" />
       <input
-			type="url"
-      placeholder="Ссылка на картинку"
-      className="popup__form-input"
-      name="link"
-      id="link"
-      required
-      minLength={2}
-			onChange={handleChangeLink}
-			value={link}
+				type="url"
+  	    placeholder="Ссылка на картинку"
+    	  className="popup__form-input"
+      	name="link"
+	      id="link"
+  	    required
+    	  minLength={2}
+				onChange={handleChangeLink}
+				value={link}
       />
       <span className="popup__error-visible" id="link-error" />
 		</PopupWithForm>

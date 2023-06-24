@@ -51,7 +51,7 @@ function App() {
     })
     .catch((err) => console.log(err));
   }
-	
+
 	React.useEffect(() => {
     api
       .getInitialCards()
@@ -104,44 +104,44 @@ function App() {
       <div className="page">
         <Header />
         <Main
-        onEditAvatar={handleEditAvatarClick}
-        onEditProfile={handleEditProfileClick}
-        onAddPlace={handleAddPlaceClick}
-        onCardClick={handleCardClick}
-        onCardDelete={handleCardDelete}
-        onCardLike={handleCardLike}
-        cards={cards}
+	        onEditAvatar={handleEditAvatarClick}
+  	      onEditProfile={handleEditProfileClick}
+    	    onAddPlace={handleAddPlaceClick}
+      	  onCardClick={handleCardClick}
+        	onCardDelete={handleCardDelete}
+	        onCardLike={handleCardLike}
+  	      cards={cards}
         />
         <Footer />
         {/* POPUP: Сменить аватар */}
 				<EditAvatarPopup
-				isOpen={isEditAvatarPopupOpen}
-				onClose={closeAllPopups}
-				onUpdateAvatar={handleUpdateAvatar} /> 
+					isOpen={isEditAvatarPopupOpen}
+					onClose={closeAllPopups}
+					onUpdateAvatar={handleUpdateAvatar} /> 
         {/* POPUP: Редактировать профиль */}
 				<EditProfilePopup
-				isOpen={isEditProfilePopupOpen}
-				onClose={closeAllPopups}
-				onUpdateUser={handleUpdateUser}
+					isOpen={isEditProfilePopupOpen}
+					onClose={closeAllPopups}
+					onUpdateUser={handleUpdateUser}
 				/> 
         {/* POPUP: добавить фото */}
 				<AddPlacePopup
-				isOpen={isAddPlacePopupOpen}
-				onClose={closeAllPopups}
-				onAddPlace={handleAddPlaceSubmit}
+					isOpen={isAddPlacePopupOpen}
+					onClose={closeAllPopups}
+					onAddPlace={handleAddPlaceSubmit}
 				/>        
         {/* POPUP: Удалить карточку */}
         <PopupWithForm
-				classText="title"
-				title="Вы уверены?" 
-        name="delete-card" 
-        buttonText="Да"
-        isOpen={false}
-        onClose={closeAllPopups}/> 
+					classText="title"
+					title="Вы уверены?" 
+  	      name="delete-card" 
+    	    buttonText="Да"
+      	  isOpen={false}
+        	onClose={closeAllPopups}/> 
         {/* POPUP: открыть карточку */}
         <ImagePopup
-        card={selectedCard} 
-        onClose={closeAllPopups} 
+	        card={selectedCard} 
+    	    onClose={closeAllPopups} 
         />
       </div>
     </CurrentUserContext.Provider>
