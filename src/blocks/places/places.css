@@ -6,7 +6,7 @@
   justify-content: center;
   min-height: 50vh;
 }
-  
+
 @media screen and (max-width: 1024px) {
   .places {
     padding: 0 19px;

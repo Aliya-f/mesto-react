@@ -1,7 +1,7 @@
 .profile__name-text {
   max-width: 294px;
   color: #fff;
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
@@ -9,9 +9,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-
 }
-  
+
 @media screen and (max-width: 1024px) {
   .profile__name-text {
     font-size: 27px;

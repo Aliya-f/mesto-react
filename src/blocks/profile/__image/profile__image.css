@@ -9,7 +9,7 @@
 }
 
 .profile__image::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -21,7 +21,7 @@
 }
 
 .profile__image::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -36,7 +36,7 @@
 }
 
 .profile__image:hover:before,
-.profile__image:hover:after { 
+.profile__image:hover:after {
   opacity: 1;
 }
 

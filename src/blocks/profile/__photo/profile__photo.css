@@ -4,7 +4,7 @@
   height: 120px;
   object-fit: cover;
   z-index: -1;
-}  
+}
 
 @media screen and (max-width: 1024px) {
   .profile__photo {
