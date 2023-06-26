@@ -1,14 +1,14 @@
 .places {
-    box-sizing: border-box;
-    max-width: 880px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    min-height: 50vh;
+  box-sizing: border-box;
+  max-width: 880px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
 }
   
 @media screen and (max-width: 1024px) {
-    .places {
-      padding: 0 19px;
-    }
+  .places {
+    padding: 0 19px;
+  }
 }

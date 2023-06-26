@@ -1,13 +1,13 @@
 .profile__photo {
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    z-index: -1;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  z-index: -1;
 }  
 
 @media screen and (max-width: 1024px) {
-    .profile__photo {
-        margin: 0;
-    }
+  .profile__photo {
+    margin: 0;
+  }
 }

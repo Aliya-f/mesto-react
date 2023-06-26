@@ -1,13 +1,13 @@
 .places__like-button {
-    background: url(../../../images/Group.svg);
-    width: 22px;
-    height: 19px;
-    border: 0;
-    cursor: pointer;
-    transition: opacity 0.2s ease-in-out;
+  background: url(../../../images/Group.svg);
+  width: 22px;
+  height: 19px;
+  border: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
 }
     
 .places__like-button:hover {
-    opacity: 0.5;
+  opacity: 0.5;
 }
     

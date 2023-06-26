@@ -8,15 +8,15 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js'
-   } ,
-   plugins: [
+  } ,
+  plugins: [
     new HtmlWebpackPlugin({
       title: 'My App',
       template: './src/index.html'
     }),
      new MiniCssExtractPlugin()
-   ],
-   devtool: 'inline-source-map',
+  ],
+  devtool: 'inline-source-map',
   
  module: {
   rules: [
@@ -25,7 +25,7 @@ module.exports = {
     use: {
       loader: 'babel-loader',
       }
-  },
+    },
 
     {test: /\.css$/i,
     use: [MiniCssExtractPlugin.loader, {
@@ -34,7 +34,6 @@ module.exports = {
     },
     {test: /\.(svg|jpe?g|gif|png)$/i,
     type: 'asset/resource',
-
     }
   ]
  }
